@@ -1,0 +1,26 @@
+function isAlpha(str) {
+  return /^[a-zA-Z()]+$/.test(str);
+}
+//console.log(isAlpha('!')); //outputs false
+
+function spinalCase(x) {
+  // "It's such a fine line between stupid, and clever."
+  // --David St. Hubbins
+  var str = x;
+  var i = 1;
+  while (i < str.length) {
+    if (str[i] == str[i].toUpperCase() && isAlpha(str[i-1])
+       && str[i] !== '-') {
+      str = str.slice(0, i) + "-" + str.slice(i);
+      i++
+    }
+    i++;
+  }
+  //str = str.replace(/[.,\/#!$%\^&\*;:{}=\_`~'"()]/g,'');
+  //str = str.replace(/\s/g,'-')
+  str = str.replace(/ /g,"");
+  str = str.replace(/\_/g,'');
+  str = str.toLowerCase();
+  return str;
+}
+console.log(spinalCase("Teletubbies say Eh-oh"));
